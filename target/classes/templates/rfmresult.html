@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Spring Boot Thymeleaf</title>
+		<link rel="stylesheet" th:href="@{/css/Kurum.css}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       	<style>
+       		table, th, td {border: 1px solid black;}
+       	</style>
+    </head>
+	<body>
+		<h1 style="text-align:center;">REGULA FALSI RESULT</h1>
+			<table class="table">
+	    	<tr>
+	    		<th colspan="3">Function</th>
+	    		<th colspan="2">Domain</th>
+	    		<th>Result</th>
+	    		<th>Iteration</th>
+	    	</tr>
+	    	<tr>
+	    		<td>x^</td>
+	    		<td th:text="*{regulaFalsiModel.ussu}"></td>
+	    		<td th:text="*{regulaFalsiModel.cikarim}"></td>
+	    		<td th:text="*{regulaFalsiModel.altSinir}"></td>
+	    		<td th:text="*{regulaFalsiModel.ustSinir}"></td>
+	    		<td th:text="*{regulaFalsiModel.result}"></td>
+	    		<td th:text="*{regulaFalsiModel.iteration}"></td>
+	    	</tr>
+	     </table>
+	</body>
+</html>

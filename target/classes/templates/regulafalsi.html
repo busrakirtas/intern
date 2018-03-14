@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Spring Boot Thymeleaf</title>
+		<link rel="stylesheet" th:href="@{/css/Kurum.css}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       	<style>
+       		table, th, td {border: 1px solid black;}
+       	</style>
+    </head>
+	<body>
+		<h1 style="text-align:center;">REGULA FALSI METHOD</h1>
+		<form action="#" th:action="@{/proje/regulafalsi}" th:object="${regulaFalsiModel}" method="POST">
+	    <div class="container">
+	    <div class="table-responsive">   
+	      <table class="table">
+	    	<tr><td>Function</td>
+	    		<td>x^<input type="text" size="1"  th:field="*{ussu}" /></td>
+	    	    <td>
+	    	       <select th:field="*{isaret}" class="form-control">
+	    	           <option th:value="1" >+</option>
+	    	           <option th:value="0" >-</option>
+	    	       </select> 
+	    	    </td>
+	    	    <td>
+	    	       <input type="text" size="1" th:field="*{cikarim}" />
+	    	    </td>
+	    	</tr>
+	    	<tr><td>Domain [a,b]</td>
+	    		<td><input type="text" size="1" th:field="*{altSinir}" /> <input type="text" size="1" th:field="*{ustSinir}" /></td>
+	    		
+	    	<tr><td colspan="2">
+	              <input type="submit" th:value="Hesapla"/> 
+	              <input type="reset" th:value="Reset"/>
+	            </td>
+	       </tr>
+	     </table>
+	     </div>
+	     </div> 
+	     </form>
+	</body>
+</html>

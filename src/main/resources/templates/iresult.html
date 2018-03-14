@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot Thymeleaf</title>
+<link rel="stylesheet" th:href="@{/css/Kurum.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header :: header"></div>
+		<div class="row" style="margin-top: 50px">
+			<h1 style="text-align: center;">RIEMANN TOPLAMI METODU</h1>
+			<table class="table table-striped table-dark">
+				<tr>
+					<th>Function</th>
+					<th colspan="2">Domain</th>
+					<th>Result</th>
+				</tr>
+				<tr>
+					<td th:text="*{fonksiyonModel.fonksiyon}"></td>
+					<td th:text="*{fonksiyonModel.altSinir}"></td>
+					<td th:text="*{fonksiyonModel.ustSinir}"></td>
+					<td th:text="*{fonksiyonModel.result}"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="col-sm-12 text-center">
+		<p>
+			f(x) fonksiyonu [a,b] aralığında sürekli bir fonksiyon olsun. Bu
+			fonksiyon eğrisinin altında kalan alanı hesaplamanın bir yöntemi
+			Riemann toplamı yöntemi kullanılabilir. <br>Bu yöntemde [a,b]
+			aralığı n parçaya bölünür; <br>
+		<div class="col-sm-12 text-center">
+			<img
+				src="https://wikimedia.org/api/rest_v1/media/math/render/svg/2fdfaa035c54104093549add767b2ec4d37c1ac8">
+			<br> <br> Her bir parça grafiğin altında kalacak
+			dikdörtgenler haline getirilir ve dikdörtgenlerin alanlarının toplamı
+			eğrinin altında kalan alana yaklaşık olarak eşittir.<br>
+			<div class="col-sm-12 text-center">
+				<img
+					src="https://wikimedia.org/api/rest_v1/media/math/render/svg/11bc42691eeeaaef32e1962e53ce6eef2ac56fba">
+				<br> <br>
+			</div>
+			n sonsuza giderken; <br> <img
+				src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Riemann_Integration_and_Darboux_Lower_Sums.gif"
+				width="500" height="400"> <br> <img
+				src="http://tutorial.math.lamar.edu/Classes/CalcI/DefnofDefiniteIntegral_files/eq0004P.gif"
+				width="300" height="50"> <br> <br>
+
+		</div>
+	</div>
+</body>
+</html>

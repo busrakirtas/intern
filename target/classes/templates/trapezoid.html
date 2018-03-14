@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot Thymeleaf</title>
+<link rel="stylesheet" th:href="@{/css/Kurum.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header :: header"></div>
+		<div class="row" style="margin-top: 50px">
+			<h1 style="text-align: center;">TRAPEZOID METODU</h1>
+			<br>
+			<form action="#" th:action="@{/proje/trapezoid}"
+				th:object="${fonksiyonModel}" method="POST">
+				<div class="container">
+					<div class="table-responsive">
+						<table class="table table-striped table-dark">
+							<tr>
+								<td>Function</td>
+								<td><input type="text" size="25" th:field="*{fonksiyon}" /></td>
+							</tr>
+							<!-- 	    	<tr><td>n</td> -->
+							<!-- 	    		<td><input type="text" size="1"  th:field="*{bolen}" /></td> -->
+							<tr>
+								<td>Domain [a,b]</td>
+								<td><input type="text" size="1" th:field="*{altSinir}" />
+									<input type="text" size="1" th:field="*{ustSinir}" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" class="btn btn-info"
+									th:value="Hesapla" /> <input type="reset" class="btn btn-info"
+									th:value="Reset" /></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="col-sm-12 text-center">
+					<p>
+						f(x) fonksiyonu [a,b] aralığında sürekli bir fonksiyon olsun. Bu
+						fonksiyonun altında kalan alanı hesaplamanın bir yöntemi Trapezoid
+						yöntemidir.<br> Bu yöntemde [a,b] aralığı n parçaya bölünür.
+						<br> <br> <img
+							src="https://wikimedia.org/api/rest_v1/media/math/render/svg/2fdfaa035c54104093549add767b2ec4d37c1ac8">
+						<br> <br> Her bir parçanın başı ve sonu bir yamuğun
+						tavanı ve tabanı kabul edilir ve yamukların alanlarının toplamı
+						eğrinin altında kalan alana yaklaşık olarak eşittir. <br> <br>
+						<img
+							src="https://wikimedia.org/api/rest_v1/media/math/render/svg/50854a88e6c67f444995d39a8455cefaf2e64dbd">
+							<br>
+					    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Trapezium2.gif">
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

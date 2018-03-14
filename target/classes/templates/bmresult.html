@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Spring Boot Thymeleaf</title>
+		<link rel="stylesheet" th:href="@{/css/Kurum.css}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       	<style>
+       		table, th, td {border: 1px solid black;}
+       	</style>
+    </head>
+	<body>
+		<h1 style="text-align:center;">BISECTION METHOD RESULT</h1>
+			<table class="table">
+	    	<tr>
+	    		<th>Function</th>
+	    		<th colspan="2">Domain</th>
+	    		<th>Result</th>
+	    		<th>Iteration</th>
+	    	</tr>
+	    	<tr>
+<!-- 	    		<td>x^</td> -->
+<!-- 	    		<td th:text="*{bisectionModel.ussu}"></td> -->
+<!-- 	    		<td th:text="*{bisectionModel.cikarim}"></td> -->
+				<td th:text="*{bisectionModel.fonksiyon}"></td>
+	    		<td th:text="*{bisectionModel.altSinir}"></td>
+	    		<td th:text="*{bisectionModel.ustSinir}"></td>
+	    		<td th:text="*{bisectionModel.result}"></td>
+	    		<td th:text="*{bisectionModel.iteration}"></td>
+	    	</tr>
+	     </table>
+	</body>
+</html>

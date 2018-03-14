@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring Boot Thymeleaf</title>
+<link rel="stylesheet" th:href="@{/css/Kurum.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header :: header"></div>
+		<div class="row" style="margin-top: 50px">
+			<div class="col-sm-12 text-left">
+				<h1 style="text-align: center;">PROBLEM</h1>
+				<br>
+				<form action="#">
+					<div class="container">
+						<div class="table-responsive">
+							<table class="table table-striped table-dark">
+								<tr>
+									<td>Function</td>
+									<td><input id="fonksiyon" type="text" size="25" /></td>
+								</tr>
+								<tr>
+									<td>Domain [a,b]</td>
+									<td><input id="altSinir" type="text" size="1" /> <input
+										id="ustSinir" type="text" size="1" /></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<button onclick="callRest()" class="btn btn-info">Hesapla</button>
+										<input type="reset" class="btn btn-info" th:value="Reset" />
+									</td>
+								</tr>
+							</table>
+							<div class="row">
+								<div class="col-sm-12">
+									<canvas id="bar-chart" width="800" height="450"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function callRest() {
+			console.log('restful servis cagırılacak');
+			console.log('json-->' + formToJSON());
+			return $.ajax({
+				type : 'POST',
+				contentType : 'application/json',
+				url : "http://localhost:8080/calculate/chartData",
+				dataType : "json",
+				data : formToJSON(),
+				success : function(response, textStatus, jqXHR) {
+					drawChart(response);
+
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert(' error: ' + textStatus);
+				}
+			});
+
+		}
+		// Helper function to serialize all the form fields into a JSON string
+		function formToJSON() {
+			return JSON.stringify({
+				"fonksiyon" : $('#fonksiyon').val(),
+				"altSinir" : $('#altSinir').val(),
+				"ustSinir" : $('#ustSinir').val()
+			});
+		}
+		function drawChart(data) {
+			console.log('myChartData-->' + data);
+			new Chart(document.getElementById("bar-chart"), {
+				type : 'bar',
+				data : {
+					labels : [ "Rieman Sum", "Trapezoid", "Simpson 1/3",
+							"Simpson 3/8" ],
+					datasets : [ {
+						label : "Integral",
+						backgroundColor : [ "#3e95cd", "#8e5ea2", "#3cba9f",
+								"#e8c3b9", "#c45850" ],
+						data : data
+					} ]
+				},
+				options : {
+					legend : {
+						display : false
+					},
+					title : {
+						display : true,
+						text : 'Integral alma yöntemleri karşılaştırması'
+					}
+				}
+			});
+		}
+	</script>
+</body>
+</html>
